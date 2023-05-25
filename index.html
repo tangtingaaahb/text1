@@ -2,11 +2,108 @@
 <html>
 <head>
   <title>My Website</title>
-</head>
-<body>
   <!-- 页面内容 -->
   
   <!-- 引用 JavaScript 文件 -->
-  <script src="2 plus 2 with carry.js"></script>
+  <!--div class="image-container"-->
+  <!--img src="https://github.com/tangtingaaahb/photo1/blob/main/IMG_0984.JPG?raw=true" alt="照片1" width="550" height="950"-->
+  <!--button class="image-button">照片1</button-->
+  <!--/div-->
+  
+<style>
+        #image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 250vh;
+        }
+
+        #image-container img {
+            max-height: 300vh;
+            max-width: 90vw;
+        }
+
+        #prev-btn, #next-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        #prev-btn {
+            left: 16px;
+        }
+
+        #next-btn {
+            right: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="current-image" src="C:\Users\可可\Downloads\1.jpeg" alt="Image">
+    </div>
+    <div id="prev-btn">&lt; Previous</div>
+    <div id="next-btn">Next &gt;</div>
+
+    <script src="path/to/your/javascript/file.js"></script>
+    <script>
+        var images = ["https://github.com/tangtingaaahb/photo1/blob/main/IMG_0984.JPG?raw=true", "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1071.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1076.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1104.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1016.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1039.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1041.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1069.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1122.JPG?raw=true", "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1150.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1151.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1200.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1238.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1248.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1349.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1388.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1452.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1454.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1470.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1472.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1474.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1503.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1558.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1623.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1644.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/IMG_1660.JPG?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/IMG_1667.JPG?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1061.png?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1062.png?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1171.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1252.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1256.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1269.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1303.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1309.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1311.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1401.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1408.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1417.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1565.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1566.jpg?raw=true","https://github.com/tangtingaaahb/photo1/blob/main/1578.jpg?raw=true",
+                      "https://github.com/tangtingaaahb/photo1/blob/main/1862.jpg?raw=true"]; // 图片路径列表
+        var currentIndex = 0;
+        var imageElement = document.getElementById("current-image");
+        var prevBtn = document.getElementById("prev-btn");
+        var nextBtn = document.getElementById("next-btn");
+    
+        // 显示当前索引对应的图片
+        function showImage(index) {
+            imageElement.src = images[index];
+        }
+    
+        // 显示上一张图片
+        function showPreviousImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+    
+        // 显示下一张图片
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+    
+        // 绑定按钮的点击事件
+        prevBtn.addEventListener("click", showPreviousImage);
+        nextBtn.addEventListener("click", showNextImage);
+    
+        // 显示初始图片
+        showImage(currentIndex);
+    </script>
+  
 </body>
 </html>
